@@ -40,6 +40,7 @@ dependencies:
   cached_network_image: ^3.4.0
   timeago: ^3.7.0
   http: ^1.2.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c13/core/ColorsManager.dart';
 import 'package:news_c13/core/remote/ApiManager.dart';
+import 'package:news_c13/ui/NewsList/screen/NewsLIstViewModel.dart';
 import 'package:news_c13/ui/NewsList/widgets/ArticlesList.dart';
+import 'package:provider/provider.dart';
 
 import '../../../model/CategoryModel.dart';
 
@@ -18,7 +20,68 @@ class NewsListWidget extends StatefulWidget {
 class _NewsListWidgetState extends State<NewsListWidget> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return ChangeNotifierProvider(
+        create: (context) => NewsListViewModel()..getSources(widget.category.id),
+        child: Consumer<NewsListViewModel>(
+            builder: (context, viewModel, child) {
+              if(viewModel.showLoading){
+                return Center(child: CircularProgressIndicator(),);
+              }else if(viewModel.errorMessage!=null){
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(viewModel.errorMessage!,style: TextStyle(
+                        fontSize: 30.sp,
+                        color: ColorsManager.textColor
+                    ),),
+                    ElevatedButton(onPressed: (){
+                      setState(() {
+
+                      });
+                    }, child: Text(
+                        "Try Again"
+                    ))
+                  ],
+                );
+              }else{
+                var sources = viewModel.sources;
+                return DefaultTabController(
+                  length: sources.length,
+                  child: Column(
+                    children: [
+                      TabBar(
+                          isScrollable: true,
+                          indicatorColor: ColorsManager.textColor,
+                          labelStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
+                              color: ColorsManager.textColor
+                          ),
+                          unselectedLabelStyle: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: ColorsManager.textColor
+                          ),
+                          tabAlignment: TabAlignment.start,
+                          dividerHeight: 0,
+                          tabs: sources.map((source) => Tab(
+                            text: source.name,
+                          )).toList()
+                      ),
+                      SizedBox(height: 15.h,),
+                      Expanded(child: TabBarView(
+                          children: sources.map((source) => ArticlesList(source)).toList()
+                      ))
+                    ],
+                  ),
+                );
+              }
+            },
+        ),
+    ) ;
+
+
+      /*FutureBuilder(
         future: ApiManager.getSources(widget.category.id),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
@@ -93,6 +156,6 @@ class _NewsListWidgetState extends State<NewsListWidget> {
           ),
           );
         },
-    );
+    )*/
   }
 }
