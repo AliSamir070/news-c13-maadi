@@ -8,10 +8,11 @@ import '../../data/model/SourcesResponse/SourcesResponse.dart';
 
 class ApiManager{
 
-  Future<SourcesResponse> getSources(String category)async{
+  Future<SourcesResponse> getSources(String category,String language)async{
     Uri uri = Uri.https(baseUrl,"/v2/top-headlines/sources",{
       "apiKey":apiKey,
-      "category":category
+      "category":category,
+      "language":language
     });
     var response = await http.get(uri);
     Map<String,dynamic> json = jsonDecode(response.body);

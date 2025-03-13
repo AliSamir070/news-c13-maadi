@@ -53,7 +53,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                 ],
               );
             }else{
-              var sources = (state as NewsSuccessState).sources;  
+              var sources = (state as NewsSuccessState).sources;
               return DefaultTabController(
                 length: sources.length,
                 child: Column(

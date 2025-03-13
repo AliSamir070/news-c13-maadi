@@ -7,7 +7,7 @@ class SourcesApiDataSourceImpl extends SourcesDataSource{
   SourcesApiDataSourceImpl(this.apiManager);        // constructor injection  - DI
   @override
   Future<SourcesResponse> getSources(String categoryId) {
-    return apiManager.getSources(categoryId);
+    return apiManager.getSources(categoryId,"ar");
   }
 
 }
