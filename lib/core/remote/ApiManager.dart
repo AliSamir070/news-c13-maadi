@@ -6,10 +6,11 @@ import 'package:news_c13/model/ArticlesResponse/ArticlesResponse.dart';
 import 'package:news_c13/model/SourcesResponse/SourcesResponse.dart';
 class ApiManager{
 
-  static Future<SourcesResponse?> getSources(String category)async{
+  static Future<SourcesResponse?> getSources(String category, String language)async{
     Uri uri = Uri.https(baseUrl,"/v2/top-headlines/sources",{
       "apiKey":apiKey,
-      "category":category
+      "category":category,
+      "language":language
     });
     var response = await http.get(uri);
     Map<String,dynamic> json = jsonDecode(response.body);

@@ -19,7 +19,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getSources(widget.category.id),
+        future: ApiManager.getSources(widget.category.id,"ar"),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
             // loading state
