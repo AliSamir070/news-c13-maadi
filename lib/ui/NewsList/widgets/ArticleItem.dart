@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c13/core/ColorsManager.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../../../model/ArticlesResponse/Article.dart';
+import '../../../data/model/ArticlesResponse/Article.dart';
 class ArticleItem extends StatelessWidget {
   final Article article;
   const ArticleItem({required this.article});

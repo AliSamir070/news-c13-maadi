@@ -4,9 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:news_c13/core/AssetsManager.dart';
 import 'package:news_c13/core/StringsManager.dart';
 import 'package:news_c13/core/remote/ApiManager.dart';
-import 'package:news_c13/model/CategoryModel.dart';
 import 'package:news_c13/ui/NewsList/screen/NewsListWidget.dart';
 
+import '../../../data/model/CategoryModel.dart';
 import '../../categories/screen/CategoriesWidget.dart';
 import '../widgets/HomeDrawer.dart';
 

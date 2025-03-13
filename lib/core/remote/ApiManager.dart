@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:news_c13/core/remote/ApiConstants.dart';
-import 'package:news_c13/model/ArticlesResponse/ArticlesResponse.dart';
-import 'package:news_c13/model/SourcesResponse/SourcesResponse.dart';
+
+import '../../data/model/ArticlesResponse/ArticlesResponse.dart';
+import '../../data/model/SourcesResponse/SourcesResponse.dart';
+
 class ApiManager{
 
-  static Future<SourcesResponse?> getSources(String category, String language)async{
+  Future<SourcesResponse> getSources(String category,String language)async{
     Uri uri = Uri.https(baseUrl,"/v2/top-headlines/sources",{
       "apiKey":apiKey,
       "category":category,
@@ -18,7 +20,7 @@ class ApiManager{
     return sourcesResponse;
   }
 
-  static Future<ArticlesResponse> getArticles(String source)async{
+  Future<ArticlesResponse> getArticles(String source)async{
     // ?sources=
     Uri url = Uri.https(baseUrl,"/v2/everything",{
       "apiKey":apiKey,
