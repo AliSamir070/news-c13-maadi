@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c13/core/ColorsManager.dart';
-import 'package:news_c13/model/CategoryModel.dart';
+
+import '../../../data/model/CategoryModel.dart';
 
 class CategoryItem extends StatelessWidget {
   final CategoryModel category;
