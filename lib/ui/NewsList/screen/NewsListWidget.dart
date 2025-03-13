@@ -30,7 +30,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                     ApiManager()
                 )
             )
-        )..getSources(widget.category.id,"ar"),
+        )..getSources(widget.category.id),
         child:BlocBuilder<NewsListViewModel,NewsStates>(
           builder: (context, state) {
             if(state is NewsLoadingState){
