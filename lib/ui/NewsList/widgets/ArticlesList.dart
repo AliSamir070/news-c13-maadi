@@ -6,8 +6,8 @@ import 'package:news_c13/ui/NewsList/screen/NewsListVIewModel.dart';
 import 'package:news_c13/ui/NewsList/widgets/ArticlesViewModel.dart';
 
 import '../../../core/ColorsManager.dart';
-import '../../../model/ArticlesResponse/Article.dart';
-import '../../../model/SourcesResponse/Sources.dart';
+
+import '../../../data/model/SourcesResponse/Sources.dart';
 import 'ArticleItem.dart';
 
 class ArticlesList extends StatefulWidget {

@@ -1,16 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_c13/core/remote/ApiManager.dart';
+import 'package:news_c13/data/repo_impl/SourcesRepoImpl.dart';
 
-import '../../../model/SourcesResponse/Sources.dart';
+import '../../../data/model/SourcesResponse/Sources.dart';
+import '../../../repo/SourcesRepo.dart';
+
 
 class NewsListViewModel extends Cubit<NewsStates>{
-  NewsListViewModel():super(NewsLoadingState());
+  SourcesRepo sourcesRepo;
+  NewsListViewModel(this.sourcesRepo):super(NewsLoadingState());
   
   getSources(String categoryId)async{
     try{
       // handle loading logic
       emit(NewsLoadingState());
-      var response = await ApiManager.getSources(categoryId);
+      var response = await sourcesRepo.getSources(categoryId);
       if(response?.status=="error"){
         // handle server error
         emit(NewsErrorState(response!.message!));

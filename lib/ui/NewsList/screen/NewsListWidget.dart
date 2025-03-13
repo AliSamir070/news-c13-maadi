@@ -4,10 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c13/core/ColorsManager.dart';
 import 'package:news_c13/core/remote/ApiManager.dart';
+import 'package:news_c13/data/datasource_impl/SourcesApiDataSourceImpl.dart';
+import 'package:news_c13/data/repo_impl/SourcesRepoImpl.dart';
 import 'package:news_c13/ui/NewsList/screen/NewsListVIewModel.dart';
 import 'package:news_c13/ui/NewsList/widgets/ArticlesList.dart';
 
-import '../../../model/CategoryModel.dart';
+import '../../../data/model/CategoryModel.dart';
+
 
 class NewsListWidget extends StatefulWidget {
   CategoryModel category;
@@ -21,7 +24,13 @@ class _NewsListWidgetState extends State<NewsListWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => NewsListViewModel()..getSources(widget.category.id),
+        create: (context) => NewsListViewModel(
+            SourcesRepoImpl(
+                SourcesApiDataSourceImpl(    // ?? DI
+                    ApiManager()
+                )
+            )
+        )..getSources(widget.category.id),
         child:BlocBuilder<NewsListViewModel,NewsStates>(
           builder: (context, state) {
             if(state is NewsLoadingState){
